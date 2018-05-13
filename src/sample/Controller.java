@@ -2,7 +2,6 @@ package sample;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,13 +16,11 @@ public class Controller implements Initializable{
 
     private Random rand = new Random();
 
+    private StringProperty numberOfPois = new SimpleStringProperty("0");
     private StringProperty yPos = new SimpleStringProperty("5");
     private StringProperty xPos = new SimpleStringProperty("5");
-
-    @FXML
-    private StringProperty poiFound = new SimpleStringProperty("0");
-    @FXML
-    private StringProperty stepsNeeded = new SimpleStringProperty("0");
+    @FXML private StringProperty poiFound = new SimpleStringProperty("0");
+    @FXML private StringProperty stepsNeeded = new SimpleStringProperty("0");
 
     private Set placesOfInterest;
 
@@ -32,6 +29,7 @@ public class Controller implements Initializable{
     @FXML private Label poiLabel;
     @FXML private Label poifound;
     @FXML private Label steps;
+    @FXML private Label noOfTreasuresRemaining;
 
     @FXML protected void handleActionButtonAction() {
         move();
@@ -39,22 +37,30 @@ public class Controller implements Initializable{
 
     @FXML protected void handleUpButton(){
         incrementPosition(yPos);
-        incrementStringProperty(stepsNeeded);
+        if (intFrom(numberOfPois) != 0){
+            incrementStringProperty(stepsNeeded);
+        }
     }
 
     @FXML protected void handleRightButton(){
         incrementPosition(xPos);
-        incrementStringProperty(stepsNeeded);
+        if (intFrom(numberOfPois) != 0){
+            incrementStringProperty(stepsNeeded);
+        }
     }
 
     @FXML protected void handleLeftButton() {
         decrementPosition(xPos);
-        incrementStringProperty(stepsNeeded);
+        if (intFrom(numberOfPois) != 0){
+            incrementStringProperty(stepsNeeded);
+        }
     }
 
     @FXML protected void handleDownButton() {
         decrementPosition(yPos);
-        incrementStringProperty(stepsNeeded);
+        if (intFrom(numberOfPois) != 0){
+            incrementStringProperty(stepsNeeded);
+        }
     }
 
     private void decrementPosition(StringProperty stringProperty) {
@@ -94,6 +100,7 @@ public class Controller implements Initializable{
             randomPositionChange(yPos);
         }
         checkForPlaceOfInterest();
+        incrementStringProperty(stepsNeeded);
     }
 
     public void checkForPlaceOfInterest() {
@@ -115,9 +122,16 @@ public class Controller implements Initializable{
             incrementStringProperty(poiFound);
             poiLabel.textProperty().setValue("You found a treasure!");
             placesOfInterest.remove(foundTuple);
+            decrementStringProperty(numberOfPois);
         } else {
-            poiLabel.textProperty().setValue("common tile");
+            poiLabel.textProperty().setValue("keep treasure hunting");
         }
+    }
+
+    private void decrementStringProperty(StringProperty stringProperty) {
+        int poif = intFrom(stringProperty);
+        poif -= 1;
+        setStringPropertyValueWith(stringProperty,poif);
     }
 
     private void incrementStringProperty(StringProperty stringProperty) {
@@ -169,6 +183,7 @@ public class Controller implements Initializable{
         xLabel.textProperty().bind(xPos);
         poifound.textProperty().bind(poiFound);
         steps.textProperty().bind(stepsNeeded);
+        noOfTreasuresRemaining.textProperty().bind(numberOfPois);
     }
 
     private Tuple pointOfInterest() {
@@ -176,6 +191,7 @@ public class Controller implements Initializable{
         int yPos = rand.nextInt(10);
         Tuple poi = new Tuple(xPos, yPos);
         System.out.println("poi at "+xPos+" "+yPos);
+        incrementStringProperty(numberOfPois);
         return poi;
     }
 }

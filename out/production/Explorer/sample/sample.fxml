@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="640.0" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="661.0" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
       <image>
@@ -43,7 +43,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="poiLabel" layoutX="10.0" layoutY="55.0" text="common tile" textAlignment="LEFT" wrapText="true">
+                  <Label fx:id="poiLabel" layoutX="10.0" layoutY="55.0" text="keep treasure hunting" textAlignment="LEFT" wrapText="true">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -80,7 +80,7 @@
             </VBox>
          </children>
       </HBox>
-    <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
         <HBox fx:id="actionParent" alignment="CENTER">
           <children>
@@ -116,6 +116,13 @@
             </GridPane>
       </children>
     </HBox>
+      <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label text="There are " />
+            <Label fx:id="noOfTreasuresRemaining" text="0" />
+            <Label text=" treasures on the map." />
+         </children>
+      </HBox>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
@@ -125,7 +132,8 @@
     <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
   </padding>
   <rowConstraints>
-    <RowConstraints maxHeight="Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+    <RowConstraints maxHeight="Infinity" minHeight="-Infinity" prefHeight="127.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="155.0" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="223.0" minHeight="-Infinity" prefHeight="121.0" vgrow="NEVER" />
   </rowConstraints>
 </GridPane>
