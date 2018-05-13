@@ -12,47 +12,79 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="640.0" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
       <image>
         <!-- place holder -->
       </image>
     </ImageView>
-    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-      <children>
-        <Label fx:id="xLabel" text="position" textAlignment="LEFT" wrapText="true">
-          <font>
-            <Font name="System Bold" size="13.0" />
-          </font>
-        </Label>
-        <Label fx:id="detailsLabel" text="x position" textAlignment="LEFT" wrapText="true">
-          <font>
-            <Font size="12.0" />
-          </font>
-        </Label>
-            <Label fx:id="yLabel" layoutX="10.0" layoutY="10.0" text="y position" textAlignment="LEFT" wrapText="true">
-               <font>
+      <HBox GridPane.columnIndex="1">
+         <children>
+          <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="106.0" prefWidth="115.0" spacing="7.0">
+            <children>
+              <Label text="position" textAlignment="LEFT" wrapText="true" fx:id="xLabel">
+                <font>
                   <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="detailsLabel1" layoutX="10.0" layoutY="33.0" text="y position" textAlignment="LEFT" wrapText="true">
-               <font>
+                </font>
+              </Label>
+              <Label fx:id="detailsLabel" text="x position" textAlignment="LEFT" wrapText="true">
+                <font>
                   <Font size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="poiLabel" layoutX="10.0" layoutY="55.0" text="common tile" textAlignment="LEFT" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-      </children>
-    </VBox>
+                </font>
+              </Label>
+                  <Label fx:id="yLabel" layoutX="10.0" layoutY="10.0" text="y position" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="detailsLabel1" layoutX="10.0" layoutY="33.0" text="y position" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="poiLabel" layoutX="10.0" layoutY="55.0" text="common tile" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+            </children>
+          </VBox>
+            <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="106.0" prefWidth="189.0" spacing="7.0">
+               <children>
+                   <Label fx:id="poifound" text="Label">
+                       <font>
+                           <Font name="System Bold" size="13.0" />
+                       </font>
+                   </Label>
+                  <Label fx:id="poiFoundLabel" text="treasures" wrapText="true">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="199.0" layoutY="10.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefHeight="106.0" prefWidth="189.0" spacing="7.0">
+               <children>
+                  <Label fx:id="steps" text="Label">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="stepsLabel" text="steps needed" wrapText="true">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
     <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <children>
         <HBox fx:id="actionParent" alignment="CENTER">
           <children>
-            <Button fx:id="actionButton" mnemonicParsing="false" onAction="#handleActionButtonAction" text="Move" HBox.hgrow="NEVER">
+            <Button fx:id="actionButton" mnemonicParsing="false" onAction="#handleActionButtonAction" text="random move" HBox.hgrow="NEVER">
               <HBox.margin>
                 <Insets right="14.0" />
               </HBox.margin>
@@ -63,20 +95,25 @@
           </HBox.margin>
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
-        <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="Cancel" HBox.hgrow="NEVER">
-          <HBox.margin>
-            <Insets />
-          </HBox.margin>
-        </Button>
-        <HBox fx:id="okParent" alignment="CENTER">
-          <children>
-            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="Ok" HBox.hgrow="NEVER">
-              <HBox.margin>
-                <Insets left="14.0" />
-              </HBox.margin>
-            </Button>
-          </children>
-        </HBox>
+        <HBox fx:id="okParent" alignment="CENTER" />
+            <GridPane>
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="rightButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#handleRightButton" text="right" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="upButton" minWidth="80.0" mnemonicParsing="false" onAction="#handleUpButton" text="up" GridPane.columnIndex="1" />
+                  <Button fx:id="leftButton" layoutX="110.0" layoutY="12.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleLeftButton" text="left" GridPane.rowIndex="1" />
+                  <Button fx:id="downButton" alignment="CENTER" layoutX="10.0" layoutY="42.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleDownButton" text="down" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
       </children>
     </HBox>
   </children>
@@ -88,7 +125,7 @@
     <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
   </padding>
   <rowConstraints>
-    <RowConstraints maxHeight="+Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
     <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
   </rowConstraints>
 </GridPane>
