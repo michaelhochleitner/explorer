@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class Controller implements Initializable{
+public class Controller extends ControllerWithData implements Initializable{
 
     private Random rand = new Random();
 
@@ -184,6 +184,9 @@ public class Controller implements Initializable{
         poifound.textProperty().bind(poiFound);
         steps.textProperty().bind(stepsNeeded);
         noOfTreasuresRemaining.textProperty().bind(numberOfPois);
+
+        System.out.println(data.getMapsize());
+        System.out.println(data.getNoOfTreasures());
     }
 
     private Tuple pointOfInterest() {
