@@ -52,48 +52,48 @@ public class Controller extends ControllerWithData implements Initializable{
 
     @FXML protected void handleUpButton(){
         incrementPosition(yPos);
-        if (intFrom(numberOfPois) != 0){
+        if (intFrom(numberOfPois) != 0 && intFrom(yPos) < data.getMapsize() -1){
             incrementStringProperty(stepsNeeded);
         }
     }
 
     @FXML protected void handleRightButton(){
         incrementPosition(xPos);
-        if (intFrom(numberOfPois) != 0){
+        if (intFrom(numberOfPois) != 0 && intFrom(xPos) < data.getMapsize() - 1){
             incrementStringProperty(stepsNeeded);
         }
     }
 
     @FXML protected void handleLeftButton() {
         decrementPosition(xPos);
-        if (intFrom(numberOfPois) != 0){
+        if (intFrom(numberOfPois) != 0 && intFrom(xPos) > 0){
             incrementStringProperty(stepsNeeded);
         }
     }
 
     @FXML protected void handleDownButton() {
         decrementPosition(yPos);
-        if (intFrom(numberOfPois) != 0){
+        if (intFrom(numberOfPois) != 0 && intFrom(yPos) > 0){
             incrementStringProperty(stepsNeeded);
         }
     }
 
     private void decrementPosition(StringProperty stringProperty) {
         int posInt = intFrom(stringProperty);
-        if (posInt > 0){
+        if (posInt > 0) {
             posInt -= 1;
+            setStringPropertyValueWith(stringProperty, posInt);
+            checkForPlaceOfInterest();
         }
-        setStringPropertyValueWith(stringProperty, posInt);
-        checkForPlaceOfInterest();
     }
 
     private void incrementPosition(StringProperty stringProperty) {
         int posInt = intFrom(stringProperty);
-        if (posInt < data.getMapsize() -1){
+        if (posInt < data.getMapsize() -1) {
             posInt += 1;
+            setStringPropertyValueWith(stringProperty, posInt);
+            checkForPlaceOfInterest();
         }
-        setStringPropertyValueWith(stringProperty, posInt);
-        checkForPlaceOfInterest();
     }
 
     private boolean randomBoolean(){
@@ -196,6 +196,12 @@ public class Controller extends ControllerWithData implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         placesOfInterest = new HashSet();
+
+//        Tuple poi = new Tuple(0, 0);
+//        placesOfInterest.add(poi);
+//        System.out.println("poi at "+xPos+" "+yPos);
+
+
         yLabel.textProperty().bind(yPos);
         xLabel.textProperty().bind(xPos);
         poifound.textProperty().bind(poiFound);
@@ -213,7 +219,6 @@ public class Controller extends ControllerWithData implements Initializable{
     }
 
     public void start() {
-        actionButton.setVisible(true);
         upButton.setVisible(true);
         downButton.setVisible(true);
         leftButton.setVisible(true);

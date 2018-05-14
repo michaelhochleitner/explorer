@@ -83,16 +83,6 @@
     <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
         <HBox fx:id="actionParent" alignment="CENTER">
-          <children>
-            <Button fx:id="actionButton" visible="false" mnemonicParsing="false" onAction="#handleActionButtonAction" text="random move" HBox.hgrow="NEVER">
-              <HBox.margin>
-                <Insets right="14.0" />
-              </HBox.margin>
-            </Button>
-          </children>
-          <HBox.margin>
-            <Insets />
-          </HBox.margin>
         </HBox>
         <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
         <HBox fx:id="okParent" alignment="CENTER" />
