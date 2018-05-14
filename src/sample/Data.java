@@ -8,13 +8,13 @@ public class Data {
     public void setMapsize(Object mapsize) {
         String mapsizeString = (String) mapsize;
         switch (mapsizeString) {
-            case "10x10": mapsize=10;
+            case "10x10": this.mapsize=10;
             break;
-            case "20x20": mapsize=20;
+            case "20x20": this.mapsize=20;
             break;
-            case "30x30": mapsize=30;
+            case "30x30": this.mapsize=30;
             break;
-            default: mapsize=10;
+            default: this.mapsize=10;
             break;
         }
     }

@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -31,6 +32,19 @@ public class Controller extends ControllerWithData implements Initializable{
     @FXML private Label poifound;
     @FXML private Label steps;
     @FXML private Label noOfTreasuresRemaining;
+    @FXML private Label treasureText1;
+    @FXML private Label treasureText2;
+    @FXML private Label getNoOfTreasuresRemaining;
+
+
+    @FXML private Button rightButton;
+    @FXML private Button leftButton;
+    @FXML private Button downButton;
+    @FXML private Button upButton;
+    @FXML private Button actionButton;
+    @FXML private Button start;
+
+
 
     @FXML protected void handleActionButtonAction() {
         move();
@@ -75,7 +89,7 @@ public class Controller extends ControllerWithData implements Initializable{
 
     private void incrementPosition(StringProperty stringProperty) {
         int posInt = intFrom(stringProperty);
-        if (posInt < 9){
+        if (posInt < data.getMapsize() -1){
             posInt += 1;
         }
         setStringPropertyValueWith(stringProperty, posInt);
@@ -100,33 +114,45 @@ public class Controller extends ControllerWithData implements Initializable{
         } else {
             randomPositionChange(yPos);
         }
+
         checkForPlaceOfInterest();
         incrementStringProperty(stepsNeeded);
     }
 
     public void checkForPlaceOfInterest() {
-        int xPosInt = Integer.parseInt(xPos.getValue());
-        int yPosInt = Integer.parseInt(yPos.getValue());
-        Tuple currentPos = new Tuple(xPosInt, yPosInt);
+        if (intFrom(numberOfPois) > 0){
+            int xPosInt = Integer.parseInt(xPos.getValue());
+            int yPosInt = Integer.parseInt(yPos.getValue());
+            Tuple currentPos = new Tuple(xPosInt, yPosInt);
 
-        Object foundTuple = null;
+            Object foundTuple = null;
 
-        boolean poifound = false;
-        for (Object tuplex : placesOfInterest) {
-            if(tuplex.equals(currentPos)){
-                poifound = true;
-                foundTuple = tuplex;
+            boolean poifound = false;
+            for (Object tuplex : placesOfInterest) {
+                if(tuplex.equals(currentPos)){
+                    poifound = true;
+                    foundTuple = tuplex;
+                }
+            }
+
+            if (poifound) {
+                if(intFrom(numberOfPois) == 1){
+                    winningMessage();
+                    decrementStringProperty(numberOfPois);
+                } else {
+                    incrementStringProperty(poiFound);
+                    poiLabel.textProperty().setValue("You found a treasure!");
+                    placesOfInterest.remove(foundTuple);
+                    decrementStringProperty(numberOfPois);
+                }
+            } else {
+                poiLabel.textProperty().setValue("keep treasure hunting");
             }
         }
+    }
 
-        if (poifound) {
-            incrementStringProperty(poiFound);
-            poiLabel.textProperty().setValue("You found a treasure!");
-            placesOfInterest.remove(foundTuple);
-            decrementStringProperty(numberOfPois);
-        } else {
-            poiLabel.textProperty().setValue("keep treasure hunting");
-        }
+    private void winningMessage() {
+        poiLabel.textProperty().setValue("A winner is you!");
     }
 
     private void decrementStringProperty(StringProperty stringProperty) {
@@ -170,16 +196,6 @@ public class Controller extends ControllerWithData implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         placesOfInterest = new HashSet();
-
-        Tuple tuple = new Tuple(5,6);
-        Tuple tuple1 = new Tuple(6,5);
-        Tuple tuple2 = new Tuple(5,4);
-        Tuple tuple3 = new Tuple(4,5);
-
-        placesOfInterest.add(pointOfInterest());
-        placesOfInterest.add(pointOfInterest());
-        placesOfInterest.add(pointOfInterest());
-        placesOfInterest.add(pointOfInterest());
         yLabel.textProperty().bind(yPos);
         xLabel.textProperty().bind(xPos);
         poifound.textProperty().bind(poiFound);
@@ -187,9 +203,9 @@ public class Controller extends ControllerWithData implements Initializable{
         noOfTreasuresRemaining.textProperty().bind(numberOfPois);
     }
 
-    private Tuple pointOfInterest() {
-        int xPos = rand.nextInt(10);
-        int yPos = rand.nextInt(10);
+    private Tuple pointOfInterest(int upperbound) {
+        int xPos = rand.nextInt(upperbound);
+        int yPos = rand.nextInt(upperbound);
         Tuple poi = new Tuple(xPos, yPos);
         System.out.println("poi at "+xPos+" "+yPos);
         incrementStringProperty(numberOfPois);
@@ -197,7 +213,18 @@ public class Controller extends ControllerWithData implements Initializable{
     }
 
     public void start() {
-        this.numberOfPois.setValue(Integer.toString(data.getNoOfTreasures()));
-        System.out.println("mapsize"+data.getMapsize());
+        actionButton.setVisible(true);
+        upButton.setVisible(true);
+        downButton.setVisible(true);
+        leftButton.setVisible(true);
+        rightButton.setVisible(true);
+        treasureText1.setVisible(true);
+        noOfTreasuresRemaining.setVisible(true);
+        treasureText2.setVisible(true);
+        start.setVisible(false);
+
+        for (int i = 0; i < data.getNoOfTreasures(); i++){
+            this.placesOfInterest.add(pointOfInterest(data.getMapsize()-1));
+        }
     }
 }

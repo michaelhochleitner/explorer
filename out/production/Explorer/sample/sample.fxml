@@ -84,7 +84,7 @@
       <children>
         <HBox fx:id="actionParent" alignment="CENTER">
           <children>
-            <Button fx:id="actionButton" mnemonicParsing="false" onAction="#handleActionButtonAction" text="random move" HBox.hgrow="NEVER">
+            <Button fx:id="actionButton" visible="false" mnemonicParsing="false" onAction="#handleActionButtonAction" text="random move" HBox.hgrow="NEVER">
               <HBox.margin>
                 <Insets right="14.0" />
               </HBox.margin>
@@ -108,19 +108,20 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="rightButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#handleRightButton" text="right" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="upButton" minWidth="80.0" mnemonicParsing="false" onAction="#handleUpButton" text="up" GridPane.columnIndex="1" />
-                  <Button fx:id="leftButton" layoutX="110.0" layoutY="12.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleLeftButton" text="left" GridPane.rowIndex="1" />
-                  <Button fx:id="downButton" alignment="CENTER" layoutX="10.0" layoutY="42.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleDownButton" text="down" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="rightButton" visible="false" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#handleRightButton" text="right" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="upButton" visible="false" minWidth="80.0" mnemonicParsing="false" onAction="#handleUpButton" text="up" GridPane.columnIndex="1" />
+                  <Button fx:id="leftButton" visible="false" layoutX="110.0" layoutY="12.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleLeftButton" text="left" GridPane.rowIndex="1" />
+                  <Button fx:id="downButton" visible="false" alignment="CENTER" layoutX="10.0" layoutY="42.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleDownButton" text="down" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
       </children>
     </HBox>
       <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="There are " />
-            <Label fx:id="noOfTreasuresRemaining" text="0" />
-            <Label text=" treasures on the map." />
+            <Label visible="false" fx:id="treasureText1" text="There are " />
+            <Label visible="false" fx:id="noOfTreasuresRemaining" text="0" />
+            <Label visible="false" fx:id="treasureText2" text=" treasures on the map." />
+            <Button fx:id="start" mnemonicParsing="false" onAction="#start" text="hide treasures" />
          </children>
       </HBox>
   </children>
