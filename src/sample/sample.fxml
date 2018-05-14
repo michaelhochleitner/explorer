@@ -121,6 +121,7 @@
             <Label text="There are " />
             <Label fx:id="noOfTreasuresRemaining" text="0" />
             <Label text=" treasures on the map." />
+            <Button fx:id="start" mnemonicParsing="false" onAction="#start" text="start" />
          </children>
       </HBox>
   </children>

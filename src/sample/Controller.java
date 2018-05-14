@@ -2,6 +2,7 @@ package sample;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -184,9 +185,6 @@ public class Controller extends ControllerWithData implements Initializable{
         poifound.textProperty().bind(poiFound);
         steps.textProperty().bind(stepsNeeded);
         noOfTreasuresRemaining.textProperty().bind(numberOfPois);
-
-        System.out.println(data.getMapsize());
-        System.out.println(data.getNoOfTreasures());
     }
 
     private Tuple pointOfInterest() {
@@ -196,5 +194,10 @@ public class Controller extends ControllerWithData implements Initializable{
         System.out.println("poi at "+xPos+" "+yPos);
         incrementStringProperty(numberOfPois);
         return poi;
+    }
+
+    public void start() {
+        this.numberOfPois.setValue(Integer.toString(data.getNoOfTreasures()));
+        System.out.println("mapsize"+data.getMapsize());
     }
 }
