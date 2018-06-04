@@ -1,0 +1,4 @@
+.idea/
+Explorer.iml
+out/production/Explorer/sample/*.class
+out/production/Explorer/sample/*.fxml
